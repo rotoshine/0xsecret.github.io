@@ -5,14 +5,13 @@
 #center { margin : 0 auto;}
 </style>
 <script type = "text/javascript">
-
 var remain_time = 0;
-var new_year = (new Date("01-01-2016").getTime())/1000;
-var last_year = (new Date("01-01-2015").getTime())/1000;
+var new_year = (new Date("01/01/2016").getTime())/1000;
+var last_year = (new Date("01/01/2015").getTime())/1000;
 var t = setInterval(timer, 1000);
 function timer()
 {
-	var current = (new Date().getTime())/1000;
+	var current = (Date.now())/1000;
 	var str = "안녕 내년에 서른인 친구들아\n" +
 			"너희의 20대는 "
 			+String(((new_year - current)).toFixed(0))+"초가 남았단다\n" +
@@ -26,7 +25,6 @@ function timer()
 	        "얼른 20대를 즐기렴\n";
 	document.getElementById("center").innerHTML = str;
 };
-
 </script>
 </head>
 
