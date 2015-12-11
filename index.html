@@ -2,6 +2,7 @@
 <head>
 <title>30살 카운터ㅠㅠ</title>
 <style type="text/css" >
+body { font:12pt; font-family:'궁서'; }
 #center { margin : 0 auto;}
 </style>
 <script type = "text/javascript">
@@ -12,17 +13,17 @@ var t = setInterval(timer, 1000);
 function timer()
 {
 	var current = (Date.now())/1000;
-	var str = "안녕 내년에 서른인 친구들아\n" +
+	var str = "안녕 내년에 서른인 친구들아<br>" +
 			"너희의 20대는 "
-			+String(((new_year - current)).toFixed(0))+"초가 남았단다\n" +
+			+String(((new_year - current)).toFixed(0))+"초가 남았단다<br>" +
 			"너의 나이는 "+
 			String((29+((current-last_year)/(new_year - last_year))).toFixed(8))+
-			"살이야\n" +
-	        "지금 이글을 읽는 순간에도\n" +
+			"살이야<br>" +
+	        "지금 이글을 읽는 순간에도<br>" +
 	        "너의 20대는 "+
 	        String(remain_time++)+
-	        "초가 지나고 있단다\n" +
-	        "얼른 20대를 즐기렴\n";
+	        "초가 지나고 있단다<br>" +
+	        "얼른 20대를 즐기렴<br>";
 	document.getElementById("center").innerHTML = str;
 };
 </script>
@@ -30,9 +31,9 @@ function timer()
 
 <body>
     <img src="http://image.aladin.co.kr/Community/paper/2013/0308/pimg_702375114833429.jpg" width="100%" />
-    <font size=12>
+    
     <div id="center" width="100%">
     </div>
-    </font>
+
 </body>
 </html>
