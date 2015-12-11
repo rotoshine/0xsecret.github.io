@@ -2,38 +2,74 @@
 <head>
 <title>30살 카운터ㅠㅠ</title>
 <style type="text/css" >
-body { font-size:24pt; font-family:'궁서'; }
-#center { margin : 0 auto;}
+body { font-family:'궁서'; }
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.bg{
+  position: relative;
+  background-image: url(http://image.aladin.co.kr/Community/paper/2013/0308/pimg_702375114833429.jpg);
+  backgrond-position: center;
+  backgrond-repeat: none;
+  background-size: cover;
+  width:800px;
+  height:600px;
+}
+.counter{
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 5px;
+  border: #eeeeee;
+}
 </style>
-<script type = "text/javascript">
-var remain_time = 0;
-var new_year = (new Date("01/01/2016").getTime())/1000;
-var last_year = (new Date("01/01/2015").getTime())/1000;
-var t = setInterval(timer, 1000);
-function timer()
-{
-	var current = (Date.now())/1000;
-	var str = "안녕 내년에 서른인 친구들아<br>" +
-			"너희의 20대는 "
-			+String(((new_year - current)).toFixed(0))+"초가 남았단다<br>" +
-			"너의 나이는 "+
-			String((29+((current-last_year)/(new_year - last_year))).toFixed(8))+
-			"살이야<br>" +
-	        "지금 이글을 읽는 순간에도<br>" +
-	        "너의 20대는 "+
-	        String(remain_time++)+
-	        "초가 지나고 있단다<br>" +
-	        "얼른 20대를 즐기렴<br>";
-	document.getElementById("center").innerHTML = str;
-};
-</script>
 </head>
 
 <body>
-    <img src="http://image.aladin.co.kr/Community/paper/2013/0308/pimg_702375114833429.jpg" width="100%" />
-    
-    <div id="center" width="100%">
-    </div>
+	<div class="container">
+		<div class="bg">
+			<div class="counter">
+				안녕 내년에 서른인 친구들아<br>
+							너희의 20대는 {remainSecond}초가 남았단다<br>
+							너의 나이는 {age}살이야<br>
+					지금 이글을 읽는 순간에도<br>
+					너의 20대는 {second}초가 지나고 있단다<br>
+					얼른 20대를 즐기렴<br>
+			</div>
+		</div>
+	</div>
+	<script type = "text/javascript">
+	var render = function(template, data){
+	  for(var key in data){
+	    template = template.replace(new RegExp('{' + key + '}', 'g'), data[key]);
+	  }
 
+	  return template;
+	}
+	var $counter = document.getElementsByClassName('counter')[0];
+	var template = $counter.innerHTML;
+
+	var remain_time = 0;
+	var new_year = (new Date("01/01/2016").getTime())/1000;
+	var last_year = (new Date("01/01/2015").getTime())/1000;
+	var t = setInterval(timer, 1000);
+
+	function timer(){
+	  remain_time = remain_time + 1;
+		var current = (Date.now())/1000;
+	  var data = {
+	    remainSecond: (new_year - current).toFixed(0),
+	    age: ((29+((current-last_year)/(new_year - last_year))).toFixed(8)),
+	    second: remain_time
+	  };
+
+		$counter.innerHTML =
+	    render(template, data);
+	};
+	</script>
 </body>
 </html>
